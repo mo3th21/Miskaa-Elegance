@@ -1,0 +1,3283 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Miskaa Elegance | Luxury Fashion House</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Jost:wght@200;300;400;500&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <style>
+      :root {
+        --gold: #c9a84c;
+
+        --gold-light: #e8d5a3;
+
+        --gold-pale: #f7f0dc;
+
+        --dark: #0d0d0d;
+
+        --dark-2: #1a1a1a;
+
+        --dark-3: #252525;
+
+        --cream: #faf8f4;
+
+        --cream-2: #f3efe6;
+
+        --white: #ffffff;
+
+        --text-muted: #888;
+
+        --text-secondary: #555;
+
+        --border: rgba(201, 168, 76, 0.18);
+
+        --border-strong: rgba(201, 168, 76, 0.4);
+
+        --ease-luxury: cubic-bezier(0.22, 1, 0.36, 1);
+
+        --ease-sharp: cubic-bezier(0.76, 0, 0.24, 1);
+      }
+
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        font-size: 16px;
+      }
+
+      body {
+        font-family: "Jost", sans-serif;
+
+        background: var(--cream);
+
+        color: var(--dark);
+
+        overflow-x: hidden;
+
+        -webkit-font-smoothing: antialiased;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      /* ─── CUSTOM CURSOR ─── */
+
+      .cursor-dot {
+        width: 8px;
+        height: 8px;
+
+        background: var(--gold);
+
+        border-radius: 50%;
+
+        position: fixed;
+
+        top: 0;
+        left: 0;
+
+        pointer-events: none;
+
+        z-index: 9999;
+
+        transform: translate(-50%, -50%);
+
+        transition:
+          transform 0.1s,
+          opacity 0.3s;
+      }
+
+      .cursor-ring {
+        width: 36px;
+        height: 36px;
+
+        border: 1px solid var(--gold);
+
+        border-radius: 50%;
+
+        position: fixed;
+
+        top: 0;
+        left: 0;
+
+        pointer-events: none;
+
+        z-index: 9998;
+
+        transform: translate(-50%, -50%);
+
+        transition:
+          transform 0.25s var(--ease-luxury),
+          width 0.3s,
+          height 0.3s,
+          opacity 0.3s;
+
+        opacity: 0.6;
+      }
+
+      /* ─── PAGE LOADER ─── */
+
+      #loader {
+        position: fixed;
+
+        inset: 0;
+
+        background: var(--dark);
+
+        z-index: 9000;
+
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: center;
+
+        justify-content: center;
+
+        gap: 32px;
+
+        transition:
+          opacity 0.8s var(--ease-luxury),
+          visibility 0.8s;
+      }
+
+      #loader.hidden {
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      .loader-brand {
+        font-family: "Cormorant Garamond", serif;
+
+        font-size: 2.8rem;
+
+        font-weight: 300;
+
+        letter-spacing: 10px;
+
+        color: var(--cream);
+
+        text-transform: uppercase;
+
+        opacity: 0;
+
+        animation: loaderName 1s var(--ease-luxury) 0.3s forwards;
+      }
+
+      .loader-sub {
+        font-family: "Jost", sans-serif;
+
+        font-size: 0.7rem;
+
+        letter-spacing: 5px;
+
+        color: var(--gold);
+
+        text-transform: uppercase;
+
+        font-weight: 300;
+
+        opacity: 0;
+
+        animation: loaderName 1s var(--ease-luxury) 0.6s forwards;
+      }
+
+      .loader-line-wrap {
+        width: 200px;
+
+        height: 1px;
+
+        background: rgba(255, 255, 255, 0.08);
+
+        overflow: hidden;
+
+        position: relative;
+      }
+
+      .loader-line-fill {
+        position: absolute;
+
+        left: 0;
+        top: 0;
+
+        height: 100%;
+
+        background: var(--gold);
+
+        width: 0;
+
+        animation: loaderFill 1.8s var(--ease-luxury) 0.4s forwards;
+      }
+
+      @keyframes loaderName {
+        to {
+          opacity: 1;
+        }
+      }
+
+      @keyframes loaderFill {
+        to {
+          width: 100%;
+        }
+      }
+
+      /* ─── HEADER ─── */
+
+      header {
+        position: fixed;
+
+        top: 0;
+        left: 0;
+
+        width: 100%;
+
+        z-index: 500;
+
+        padding: 0 60px;
+
+        height: 88px;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: space-between;
+
+        transition:
+          background 0.5s var(--ease-luxury),
+          box-shadow 0.5s;
+      }
+
+      header.scrolled {
+        background: rgba(250, 248, 244, 0.92);
+
+        backdrop-filter: blur(24px);
+
+        -webkit-backdrop-filter: blur(24px);
+
+        box-shadow: 0 1px 0 var(--border);
+      }
+
+      .header-logo {
+        font-family: "Cormorant Garamond", serif;
+
+        font-size: 1.6rem;
+
+        font-weight: 400;
+
+        letter-spacing: 5px;
+
+        text-transform: uppercase;
+
+        color: var(--white);
+
+        transition: color 0.5s;
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 10px;
+      }
+
+      header.scrolled .header-logo {
+        color: var(--dark);
+      }
+
+      .logo-mark {
+        width: 36px;
+        height: 36px;
+
+        border: 1px solid var(--gold);
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        font-size: 0.9rem;
+
+        color: var(--gold);
+      }
+
+      nav {
+        display: flex;
+
+        gap: 38px;
+      }
+
+      .nav-link {
+        font-size: 0.72rem;
+
+        letter-spacing: 2.5px;
+
+        text-transform: uppercase;
+
+        font-weight: 400;
+
+        color: rgba(255, 255, 255, 0.75);
+
+        transition: color 0.4s;
+
+        position: relative;
+      }
+
+      .nav-link::after {
+        content: "";
+
+        position: absolute;
+
+        bottom: -4px;
+        left: 0;
+
+        width: 0;
+        height: 1px;
+
+        background: var(--gold);
+
+        transition: width 0.4s var(--ease-luxury);
+      }
+
+      .nav-link:hover {
+        color: var(--gold);
+      }
+
+      .nav-link:hover::after {
+        width: 100%;
+      }
+
+      header.scrolled .nav-link {
+        color: var(--text-secondary);
+      }
+
+      header.scrolled .nav-link:hover {
+        color: var(--gold);
+      }
+
+      .header-icons {
+        display: flex;
+
+        gap: 22px;
+
+        color: rgba(255, 255, 255, 0.75);
+
+        font-size: 0.95rem;
+
+        transition: color 0.5s;
+      }
+
+      header.scrolled .header-icons {
+        color: var(--text-secondary);
+      }
+
+      .header-icons i {
+        cursor: pointer;
+        transition: color 0.3s;
+      }
+
+      .header-icons i:hover {
+        color: var(--gold);
+      }
+
+      /* ─── HERO ─── */
+
+      #home {
+        height: 100vh;
+
+        min-height: 700px;
+
+        position: relative;
+
+        overflow: hidden;
+
+        display: flex;
+
+        align-items: flex-end;
+
+        padding-bottom: 100px;
+      }
+
+      .hero-bg {
+        position: absolute;
+
+        inset: 0;
+
+        background: url("https://i.ibb.co/bLhmqT4/Whats-App-Image-2026-06-01-at-2-39-50-PM.jpg")
+          center/cover no-repeat;
+
+        transform: scale(1.06);
+
+        animation: heroZoom 12s var(--ease-luxury) forwards;
+      }
+
+      .hero-overlay {
+        position: absolute;
+
+        inset: 0;
+
+        background: linear-gradient(
+          to right,
+
+          rgba(13, 13, 13, 0.78) 0%,
+
+          rgba(13, 13, 13, 0.45) 50%,
+
+          rgba(13, 13, 13, 0.2) 100%
+        );
+      }
+
+      .hero-grain {
+        position: absolute;
+
+        inset: 0;
+
+        opacity: 0.03;
+
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+
+        background-size: 180px;
+      }
+
+      @keyframes heroZoom {
+        to {
+          transform: scale(1);
+        }
+      }
+
+      .hero-content {
+        position: relative;
+
+        z-index: 2;
+
+        padding: 0 80px;
+
+        max-width: 900px;
+      }
+
+      .hero-eyebrow {
+        font-size: 0.68rem;
+
+        letter-spacing: 5px;
+
+        text-transform: uppercase;
+
+        color: var(--gold);
+
+        font-weight: 300;
+
+        margin-bottom: 24px;
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 14px;
+
+        opacity: 0;
+
+        animation: heroReveal 1s var(--ease-luxury) 2.2s forwards;
+      }
+
+      .hero-eyebrow::before {
+        content: "";
+
+        width: 40px;
+        height: 1px;
+
+        background: var(--gold);
+      }
+
+      .hero-title {
+        font-family: "Cormorant Garamond", serif;
+
+        font-size: clamp(3.5rem, 7vw, 6.5rem);
+
+        font-weight: 300;
+
+        color: var(--white);
+
+        line-height: 1.05;
+
+        letter-spacing: 2px;
+
+        margin-bottom: 28px;
+
+        opacity: 0;
+
+        animation: heroReveal 1s var(--ease-luxury) 2.4s forwards;
+      }
+
+      .hero-title em {
+        font-style: italic;
+
+        color: var(--gold-light);
+      }
+
+      .hero-desc {
+        font-size: 0.9rem;
+
+        font-weight: 300;
+
+        letter-spacing: 1.5px;
+
+        color: rgba(255, 255, 255, 0.65);
+
+        max-width: 440px;
+
+        line-height: 1.9;
+
+        margin-bottom: 48px;
+
+        opacity: 0;
+
+        animation: heroReveal 1s var(--ease-luxury) 2.6s forwards;
+      }
+
+      .hero-actions {
+        display: flex;
+
+        gap: 20px;
+
+        align-items: center;
+
+        opacity: 0;
+
+        animation: heroReveal 1s var(--ease-luxury) 2.8s forwards;
+      }
+
+      @keyframes heroReveal {
+        from {
+          opacity: 0;
+          transform: translateY(22px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .btn-primary {
+        display: inline-flex;
+
+        align-items: center;
+
+        gap: 12px;
+
+        background: var(--gold);
+
+        color: var(--dark);
+
+        padding: 16px 38px;
+
+        font-size: 0.72rem;
+
+        font-weight: 500;
+
+        letter-spacing: 3px;
+
+        text-transform: uppercase;
+
+        cursor: pointer;
+
+        transition: all 0.5s var(--ease-luxury);
+
+        border: 1px solid var(--gold);
+
+        position: relative;
+
+        overflow: hidden;
+      }
+
+      .btn-primary::before {
+        content: "";
+
+        position: absolute;
+
+        inset: 0;
+
+        background: var(--dark);
+
+        transform: translateX(-101%);
+
+        transition: transform 0.5s var(--ease-luxury);
+      }
+
+      .btn-primary:hover {
+        color: var(--gold);
+      }
+
+      .btn-primary:hover::before {
+        transform: translateX(0);
+      }
+
+      .btn-primary span {
+        position: relative;
+        z-index: 1;
+      }
+
+      .btn-ghost {
+        display: inline-flex;
+
+        align-items: center;
+
+        gap: 10px;
+
+        color: rgba(255, 255, 255, 0.7);
+
+        font-size: 0.72rem;
+
+        letter-spacing: 2.5px;
+
+        text-transform: uppercase;
+
+        font-weight: 300;
+
+        transition: color 0.3s;
+
+        cursor: pointer;
+      }
+
+      .btn-ghost:hover {
+        color: var(--gold);
+      }
+
+      .btn-ghost i {
+        font-size: 0.8rem;
+      }
+
+      .hero-scroll-hint {
+        position: absolute;
+
+        bottom: 40px;
+
+        right: 80px;
+
+        z-index: 2;
+
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: center;
+
+        gap: 10px;
+
+        color: rgba(255, 255, 255, 0.4);
+
+        font-size: 0.62rem;
+
+        letter-spacing: 3px;
+
+        text-transform: uppercase;
+
+        opacity: 0;
+
+        animation: heroReveal 1s var(--ease-luxury) 3.2s forwards;
+      }
+
+      .scroll-line {
+        width: 1px;
+
+        height: 60px;
+
+        background: rgba(255, 255, 255, 0.2);
+
+        position: relative;
+
+        overflow: hidden;
+      }
+
+      .scroll-line::after {
+        content: "";
+
+        position: absolute;
+
+        top: -100%;
+
+        left: 0;
+
+        width: 100%;
+
+        height: 100%;
+
+        background: var(--gold);
+
+        animation: scrollPulse 2s ease infinite 3.5s;
+      }
+
+      @keyframes scrollPulse {
+        0% {
+          top: -100%;
+        }
+
+        100% {
+          top: 100%;
+        }
+      }
+
+      /* ─── SECTIONS COMMON ─── */
+
+      .section {
+        padding: 130px 60px;
+      }
+
+      .section-inner {
+        max-width: 1340px;
+
+        margin: 0 auto;
+      }
+
+      .section-label {
+        font-size: 0.65rem;
+
+        letter-spacing: 5px;
+
+        text-transform: uppercase;
+
+        color: var(--gold);
+
+        font-weight: 300;
+
+        margin-bottom: 18px;
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 12px;
+      }
+
+      .section-label::before {
+        content: "";
+
+        width: 28px;
+        height: 1px;
+
+        background: var(--gold);
+      }
+
+      .section-title {
+        font-family: "Cormorant Garamond", serif;
+
+        font-size: clamp(2.2rem, 4vw, 3.5rem);
+
+        font-weight: 300;
+
+        letter-spacing: 1px;
+
+        color: var(--dark);
+
+        line-height: 1.1;
+      }
+
+      .section-title em {
+        font-style: italic;
+        color: var(--gold);
+      }
+
+      /* ─── CATEGORIES ─── */
+
+      #categories {
+        background: var(--dark);
+      }
+
+      #categories .section-title {
+        color: var(--cream);
+      }
+
+      #categories .section-label {
+        color: var(--gold);
+      }
+
+      #categories .section-label::before {
+        background: var(--gold);
+      }
+
+      .categories-header {
+        display: flex;
+
+        justify-content: space-between;
+
+        align-items: flex-end;
+
+        margin-bottom: 70px;
+      }
+
+      .categories-desc {
+        max-width: 340px;
+
+        font-size: 0.88rem;
+
+        color: rgba(255, 255, 255, 0.45);
+
+        line-height: 1.9;
+
+        font-weight: 300;
+      }
+
+      .cats-grid {
+        display: grid;
+
+        grid-template-columns: 2fr 1fr 1fr;
+
+        grid-template-rows: 340px 340px;
+
+        gap: 14px;
+      }
+
+      .cat-card {
+        position: relative;
+
+        overflow: hidden;
+
+        cursor: pointer;
+
+        background: var(--dark-3);
+      }
+
+      .cat-card:first-child {
+        grid-row: 1 / 3;
+      }
+
+      .cat-img {
+        width: 100%;
+
+        height: 100%;
+
+        object-fit: cover;
+
+        transition:
+          transform 0.9s var(--ease-luxury),
+          filter 0.5s;
+
+        filter: brightness(0.75) saturate(0.9);
+      }
+
+      .cat-card:hover .cat-img {
+        transform: scale(1.08);
+
+        filter: brightness(0.6) saturate(1);
+      }
+
+      .cat-overlay {
+        position: absolute;
+
+        inset: 0;
+
+        background: linear-gradient(
+          to top,
+          rgba(13, 13, 13, 0.9) 0%,
+          rgba(13, 13, 13, 0) 55%
+        );
+
+        display: flex;
+
+        flex-direction: column;
+
+        justify-content: flex-end;
+
+        padding: 32px 28px;
+      }
+
+      .cat-count {
+        font-family: "Cormorant Garamond", serif;
+
+        font-size: 0.75rem;
+
+        letter-spacing: 3px;
+
+        color: var(--gold);
+
+        margin-bottom: 8px;
+
+        text-transform: uppercase;
+
+        opacity: 0;
+
+        transform: translateY(8px);
+
+        transition: all 0.4s var(--ease-luxury);
+      }
+
+      .cat-card:hover .cat-count {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .cat-name {
+        font-family: "Cormorant Garamond", serif;
+
+        font-size: 1.7rem;
+
+        font-weight: 400;
+
+        color: var(--white);
+
+        letter-spacing: 1px;
+
+        line-height: 1;
+
+        margin-bottom: 16px;
+      }
+
+      .cat-card:first-child .cat-name {
+        font-size: 2.6rem;
+      }
+
+      .cat-arrow {
+        display: inline-flex;
+
+        align-items: center;
+
+        gap: 10px;
+
+        font-size: 0.65rem;
+
+        letter-spacing: 3px;
+
+        text-transform: uppercase;
+
+        color: var(--gold);
+
+        opacity: 0;
+
+        transform: translateX(-10px);
+
+        transition: all 0.5s var(--ease-luxury) 0.05s;
+      }
+
+      .cat-arrow i {
+        font-size: 0.75rem;
+      }
+
+      .cat-card:hover .cat-arrow {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      /* ─── BRAND STORY ─── */
+
+      #story {
+        background: var(--cream-2);
+      }
+
+      .story-grid {
+        display: grid;
+
+        grid-template-columns: 1fr 1fr;
+
+        gap: 100px;
+
+        align-items: center;
+      }
+
+      .story-img-wrap {
+        position: relative;
+      }
+
+      .story-img-main {
+        width: 100%;
+
+        aspect-ratio: 3/4;
+
+        object-fit: cover;
+
+        display: block;
+      }
+
+      .story-img-accent {
+        position: absolute;
+
+        width: 55%;
+
+        aspect-ratio: 1;
+
+        object-fit: cover;
+
+        bottom: -40px;
+
+        right: -40px;
+
+        border: 6px solid var(--cream-2);
+      }
+
+      .story-badge {
+        position: absolute;
+
+        top: 40px;
+
+        left: -30px;
+
+        background: var(--gold);
+
+        color: var(--dark);
+
+        padding: 28px 24px;
+
+        font-family: "Cormorant Garamond", serif;
+
+        text-align: center;
+      }
+
+      .story-badge-num {
+        font-size: 2.5rem;
+
+        font-weight: 600;
+
+        line-height: 1;
+
+        display: block;
+      }
+
+      .story-badge-text {
+        font-size: 0.62rem;
+
+        letter-spacing: 2px;
+
+        text-transform: uppercase;
+
+        display: block;
+
+        margin-top: 4px;
+      }
+
+      .story-content {
+      }
+
+      .story-body {
+        font-family: "Cormorant Garamond", serif;
+
+        font-size: 1.18rem;
+
+        font-style: italic;
+
+        color: var(--text-secondary);
+
+        line-height: 1.85;
+
+        margin: 32px 0;
+      }
+
+      .story-body strong {
+        font-style: normal;
+        color: var(--dark);
+        font-weight: 600;
+      }
+
+      .story-stats {
+        display: flex;
+
+        gap: 40px;
+
+        margin-top: 48px;
+
+        padding-top: 40px;
+
+        border-top: 1px solid var(--border);
+      }
+
+      .stat-item {
+      }
+
+      .stat-num {
+        font-family: "Cormorant Garamond", serif;
+
+        font-size: 2.4rem;
+
+        font-weight: 300;
+
+        color: var(--gold);
+
+        line-height: 1;
+      }
+
+      .stat-label {
+        font-size: 0.65rem;
+
+        letter-spacing: 2.5px;
+
+        text-transform: uppercase;
+
+        color: var(--text-muted);
+
+        margin-top: 6px;
+      }
+
+      /* ─── PRODUCT SECTIONS ─── */
+
+      .products-section {
+        background: var(--cream);
+      }
+
+      .products-section:nth-child(even) {
+        background: var(--white);
+      }
+
+      .section-head-row {
+        display: flex;
+
+        justify-content: space-between;
+
+        align-items: flex-end;
+
+        margin-bottom: 60px;
+      }
+
+      .view-all-link {
+        font-size: 0.68rem;
+
+        letter-spacing: 3px;
+
+        text-transform: uppercase;
+
+        color: var(--text-muted);
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 10px;
+
+        transition: color 0.3s;
+      }
+
+      .view-all-link::after {
+        content: "";
+
+        width: 30px;
+        height: 1px;
+
+        background: currentColor;
+
+        transition: width 0.4s var(--ease-luxury);
+      }
+
+      .view-all-link:hover {
+        color: var(--gold);
+      }
+
+      .view-all-link:hover::after {
+        width: 50px;
+      }
+
+      .products-grid {
+        display: grid;
+
+        grid-template-columns: repeat(3, 1fr);
+
+        gap: 28px;
+      }
+
+      .product-card {
+        position: relative;
+
+        background: var(--white);
+
+        cursor: pointer;
+
+        transition: transform 0.6s var(--ease-luxury);
+      }
+
+      .products-section:nth-child(even) .product-card {
+        background: var(--cream);
+      }
+
+      .product-card:hover {
+        transform: translateY(-10px);
+      }
+
+      .product-img-wrap {
+        position: relative;
+
+        overflow: hidden;
+
+        aspect-ratio: 3/4;
+
+        background: var(--cream-2);
+      }
+
+      .product-img-wrap img {
+        width: 100%;
+
+        height: 100%;
+
+        object-fit: cover;
+
+        transition: transform 0.9s var(--ease-luxury);
+      }
+
+      .product-card:hover .product-img-wrap img {
+        transform: scale(1.07);
+      }
+
+      .product-badge {
+        position: absolute;
+
+        top: 16px;
+
+        left: 16px;
+
+        background: var(--gold);
+
+        color: var(--dark);
+
+        font-size: 0.6rem;
+
+        letter-spacing: 2px;
+
+        text-transform: uppercase;
+
+        padding: 5px 12px;
+
+        font-weight: 500;
+      }
+
+      .product-quick-view {
+        position: absolute;
+
+        bottom: 0;
+
+        left: 0;
+        right: 0;
+
+        background: rgba(13, 13, 13, 0.88);
+
+        backdrop-filter: blur(4px);
+
+        color: var(--gold);
+
+        font-size: 0.65rem;
+
+        letter-spacing: 3px;
+
+        text-transform: uppercase;
+
+        text-align: center;
+
+        padding: 16px;
+
+        transform: translateY(100%);
+
+        transition: transform 0.5s var(--ease-luxury);
+      }
+
+      .product-card:hover .product-quick-view {
+        transform: translateY(0);
+      }
+
+      .product-info {
+        padding: 20px 0 6px;
+      }
+
+      .product-category {
+        font-size: 0.6rem;
+
+        letter-spacing: 2.5px;
+
+        text-transform: uppercase;
+
+        color: var(--gold);
+
+        font-weight: 300;
+
+        margin-bottom: 6px;
+      }
+
+      .product-name {
+        font-family: "Cormorant Garamond", serif;
+
+        font-size: 1.15rem;
+
+        font-weight: 400;
+
+        color: var(--dark);
+
+        letter-spacing: 0.3px;
+
+        margin-bottom: 12px;
+      }
+
+      .product-footer {
+        display: flex;
+
+        align-items: center;
+
+        justify-content: space-between;
+      }
+
+      .product-price {
+        font-family: "Cormorant Garamond", serif;
+
+        font-size: 1.2rem;
+
+        font-weight: 600;
+
+        color: var(--dark);
+      }
+
+      .product-price span {
+        font-size: 0.75rem;
+
+        color: var(--text-muted);
+
+        font-weight: 300;
+
+        margin-left: 2px;
+      }
+
+      .btn-order {
+        background: transparent;
+
+        border: 1px solid var(--border-strong);
+
+        color: var(--dark);
+
+        font-family: "Jost", sans-serif;
+
+        font-size: 0.6rem;
+
+        letter-spacing: 2.5px;
+
+        text-transform: uppercase;
+
+        padding: 10px 22px;
+
+        cursor: pointer;
+
+        transition: all 0.4s var(--ease-luxury);
+
+        display: inline-block;
+      }
+
+      .btn-order:hover {
+        background: var(--dark);
+
+        color: var(--gold);
+
+        border-color: var(--dark);
+      }
+
+      /* ─── QUOTE BAND ─── */
+
+      .quote-band {
+        padding: 100px 60px;
+
+        background: var(--dark);
+
+        text-align: center;
+
+        position: relative;
+
+        overflow: hidden;
+      }
+
+      .quote-band::before {
+        content: '"';
+
+        font-family: "Cormorant Garamond", serif;
+
+        font-size: 28rem;
+
+        color: rgba(201, 168, 76, 0.04);
+
+        position: absolute;
+
+        top: -80px;
+
+        left: 50%;
+
+        transform: translateX(-50%);
+
+        line-height: 1;
+
+        pointer-events: none;
+      }
+
+      .quote-text {
+        font-family: "Cormorant Garamond", serif;
+
+        font-size: clamp(1.8rem, 3.5vw, 3rem);
+
+        font-weight: 300;
+
+        font-style: italic;
+
+        color: var(--cream);
+
+        max-width: 800px;
+
+        margin: 0 auto 24px;
+
+        line-height: 1.4;
+
+        position: relative;
+
+        z-index: 1;
+      }
+
+      .quote-author {
+        font-size: 0.65rem;
+
+        letter-spacing: 4px;
+
+        text-transform: uppercase;
+
+        color: var(--gold);
+
+        position: relative;
+
+        z-index: 1;
+      }
+
+      /* ─── FOOTER ─── */
+
+      footer {
+        background: var(--dark-2);
+
+        padding: 90px 60px 40px;
+
+        border-top: 1px solid rgba(201, 168, 76, 0.2);
+      }
+
+      .footer-grid {
+        max-width: 1340px;
+
+        margin: 0 auto;
+
+        display: grid;
+
+        grid-template-columns: 2fr 1fr 1fr;
+
+        gap: 80px;
+
+        padding-bottom: 60px;
+
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+
+        margin-bottom: 40px;
+      }
+
+      .footer-brand {
+      }
+
+      .footer-logo {
+        font-family: "Cormorant Garamond", serif;
+
+        font-size: 1.8rem;
+
+        font-weight: 300;
+
+        letter-spacing: 6px;
+
+        color: var(--cream);
+
+        text-transform: uppercase;
+
+        margin-bottom: 20px;
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 12px;
+      }
+
+      .footer-desc {
+        font-size: 0.85rem;
+
+        color: rgba(255, 255, 255, 0.35);
+
+        line-height: 1.9;
+
+        font-weight: 300;
+
+        max-width: 320px;
+
+        margin-bottom: 32px;
+      }
+
+      .footer-social {
+        display: flex;
+
+        gap: 14px;
+      }
+
+      .social-btn {
+        width: 40px;
+        height: 40px;
+
+        border: 1px solid rgba(255, 255, 255, 0.12);
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        color: rgba(255, 255, 255, 0.4);
+
+        font-size: 0.85rem;
+
+        transition: all 0.4s;
+
+        cursor: pointer;
+      }
+
+      .social-btn:hover {
+        border-color: var(--gold);
+
+        color: var(--gold);
+
+        background: rgba(201, 168, 76, 0.06);
+      }
+
+      .footer-col-title {
+        font-size: 0.65rem;
+
+        letter-spacing: 3px;
+
+        text-transform: uppercase;
+
+        color: var(--cream);
+
+        margin-bottom: 28px;
+
+        font-weight: 400;
+      }
+
+      .footer-links {
+        display: flex;
+
+        flex-direction: column;
+
+        gap: 14px;
+      }
+
+      .footer-link {
+        font-size: 0.82rem;
+
+        color: rgba(255, 255, 255, 0.35);
+
+        transition: color 0.3s;
+
+        font-weight: 300;
+      }
+
+      .footer-link:hover {
+        color: var(--gold);
+      }
+
+      .footer-bottom {
+        max-width: 1340px;
+
+        margin: 0 auto;
+
+        display: flex;
+
+        justify-content: space-between;
+
+        align-items: center;
+      }
+
+      .footer-copy {
+        font-size: 0.75rem;
+
+        color: rgba(255, 255, 255, 0.2);
+
+        letter-spacing: 1px;
+      }
+
+      .footer-tagline {
+        font-family: "Cormorant Garamond", serif;
+
+        font-style: italic;
+
+        font-size: 0.9rem;
+
+        color: rgba(201, 168, 76, 0.5);
+      }
+
+      /* ─── REVEAL ANIMATIONS ─── */
+
+      .reveal {
+        opacity: 0;
+
+        transform: translateY(40px);
+
+        transition:
+          opacity 0.9s var(--ease-luxury),
+          transform 0.9s var(--ease-luxury);
+      }
+
+      .reveal.visible {
+        opacity: 1;
+
+        transform: translateY(0);
+      }
+
+      .reveal-delay-1 {
+        transition-delay: 0.1s;
+      }
+
+      .reveal-delay-2 {
+        transition-delay: 0.2s;
+      }
+
+      .reveal-delay-3 {
+        transition-delay: 0.3s;
+      }
+
+      .reveal-delay-4 {
+        transition-delay: 0.4s;
+      }
+
+      .reveal-delay-5 {
+        transition-delay: 0.5s;
+      }
+
+      .reveal-delay-6 {
+        transition-delay: 0.6s;
+      }
+
+      /* ─── HORIZONTAL MARQUEE ─── */
+
+      .marquee-wrap {
+        overflow: hidden;
+
+        padding: 24px 0;
+
+        background: var(--gold-pale);
+
+        border-top: 1px solid var(--border);
+
+        border-bottom: 1px solid var(--border);
+      }
+
+      .marquee-track {
+        display: flex;
+
+        gap: 0;
+
+        animation: marqueeMove 22s linear infinite;
+
+        white-space: nowrap;
+
+        width: max-content;
+      }
+
+      .marquee-item {
+        font-family: "Cormorant Garamond", serif;
+
+        font-size: 0.8rem;
+
+        letter-spacing: 4px;
+
+        text-transform: uppercase;
+
+        color: var(--gold);
+
+        padding: 0 36px;
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 18px;
+      }
+
+      .marquee-item::after {
+        content: "◆";
+
+        font-size: 0.4rem;
+      }
+
+      @keyframes marqueeMove {
+        0% {
+          transform: translateX(0);
+        }
+
+        100% {
+          transform: translateX(-50%);
+        }
+      }
+
+      /* ─── MOBILE ─── */
+
+      @media (max-width: 1024px) {
+        header {
+          padding: 0 30px;
+        }
+
+        nav {
+          display: none;
+        }
+
+        .hero-content {
+          padding: 0 40px;
+        }
+
+        .hero-scroll-hint {
+          right: 40px;
+        }
+
+        .section {
+          padding: 90px 30px;
+        }
+
+        .cats-grid {
+          grid-template-columns: 1fr 1fr;
+          grid-template-rows: auto;
+        }
+
+        .cat-card:first-child {
+          grid-column: 1 / -1;
+          grid-row: auto;
+          height: 320px;
+        }
+
+        .cat-card {
+          height: 220px;
+        }
+
+        .story-grid {
+          grid-template-columns: 1fr;
+          gap: 60px;
+        }
+
+        .story-badge {
+          display: none;
+        }
+
+        .story-img-accent {
+          display: none;
+        }
+
+        .footer-grid {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .products-grid {
+          grid-template-columns: 1fr 1fr;
+          gap: 16px;
+        }
+
+        .categories-header {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 20px;
+        }
+
+        .story-stats {
+          gap: 24px;
+        }
+      }
+
+      @media (max-width: 560px) {
+        .hero-content {
+          padding: 0 24px;
+        }
+
+        .hero-title {
+          font-size: 3rem;
+        }
+
+        .products-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .section {
+          padding: 70px 20px;
+        }
+
+        .footer-bottom {
+          flex-direction: column;
+          gap: 10px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Custom Cursor -->
+
+    <div class="cursor-dot" id="cursorDot"></div>
+
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <!-- Page Loader -->
+
+    <div id="loader">
+      <div class="loader-brand">Miskaa</div>
+
+      <div class="loader-sub">Elegance · Luxury Fashion House</div>
+
+      <div class="loader-line-wrap">
+        <div class="loader-line-fill"></div>
+      </div>
+    </div>
+
+    <!-- Header -->
+
+    <header id="header">
+      <a href="#home" class="header-logo">
+        <div class="logo-mark">M</div>
+
+        Miskaa
+      </a>
+
+      <nav>
+        <a href="#categories" class="nav-link">Collections</a>
+
+        <a href="#shirts" class="nav-link">Shirts</a>
+
+        <a href="#shoes" class="nav-link">Footwear</a>
+
+        <a href="#pants" class="nav-link">Trousers</a>
+
+        <a href="#twopieces" class="nav-link">Co-ords</a>
+
+        <a href="#accessories" class="nav-link">Accessories</a>
+      </nav>
+
+      <div class="header-icons">
+        <i
+          class="fa-brands fa-instagram"
+          onclick="
+            window.open('https://www.instagram.com/miskaa.elegance', '_blank')
+          "
+        ></i>
+      </div>
+    </header>
+
+    <!-- Hero -->
+
+    <section id="home">
+      <div class="hero-bg"></div>
+
+      <div class="hero-overlay"></div>
+
+      <div class="hero-grain"></div>
+
+      <div class="hero-content">
+        <div class="hero-eyebrow">New Collection · 2026</div>
+
+        <h1 class="hero-title">
+          Where <em>Elegance</em><br />Becomes Identity
+        </h1>
+
+        <p class="hero-desc">
+          A curated house of luxury fashion — each piece designed with
+          intention, crafted for those who see style as a philosophy.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#categories" class="btn-primary"
+            ><span>Explore Collections</span></a
+          >
+
+          <a href="#story" class="btn-ghost"
+            ><i class="fa-solid fa-circle-play"></i> Our Story</a
+          >
+        </div>
+      </div>
+
+      <div class="hero-scroll-hint">
+        <div class="scroll-line"></div>
+
+        Scroll
+      </div>
+    </section>
+
+    <!-- Marquee -->
+
+    <div class="marquee-wrap">
+      <div class="marquee-track">
+        <span class="marquee-item">Premium Craftsmanship</span>
+
+        <span class="marquee-item">Timeless Design</span>
+
+        <span class="marquee-item">Luxury Fabrics</span>
+
+        <span class="marquee-item">Exclusive Collections</span>
+
+        <span class="marquee-item">Artisan Quality</span>
+
+        <span class="marquee-item">Refined Elegance</span>
+
+        <span class="marquee-item">Premium Craftsmanship</span>
+
+        <span class="marquee-item">Timeless Design</span>
+
+        <span class="marquee-item">Luxury Fabrics</span>
+
+        <span class="marquee-item">Exclusive Collections</span>
+
+        <span class="marquee-item">Artisan Quality</span>
+
+        <span class="marquee-item">Refined Elegance</span>
+      </div>
+    </div>
+
+    <!-- Categories -->
+
+    <section id="categories" class="section" style="background: var(--dark)">
+      <div class="section-inner">
+        <div class="categories-header">
+          <div>
+            <div class="section-label reveal">Our Curated World</div>
+
+            <h2 class="section-title reveal reveal-delay-1">
+              The <em>Atelier</em><br />Collections
+            </h2>
+          </div>
+
+          <p class="categories-desc reveal reveal-delay-2">
+            Each category is a universe — thoughtfully curated to bring together
+            pieces that complement, elevate, and define a complete aesthetic
+            vision.
+          </p>
+        </div>
+
+        <div class="cats-grid">
+          <a href="#shirts" class="cat-card reveal">
+            <img
+              src="https://i.ibb.co/zWC6hGfw/Whats-App-Image-2026-06-01-at-2-40-58-PM.jpg"
+              alt="Shirts"
+              class="cat-img"
+            />
+
+            <div class="cat-overlay">
+              <div class="cat-count">06 Pieces</div>
+
+              <h3 class="cat-name">Luxury<br />Shirts</h3>
+
+              <div class="cat-arrow">
+                Explore <i class="fa-solid fa-arrow-right"></i>
+              </div>
+            </div>
+          </a>
+
+          <a href="#shoes" class="cat-card reveal reveal-delay-1">
+            <img
+              src="https://i.ibb.co/VY7yqx8x/Whats-App-Image-2026-06-01-at-2-43-33-PM.jpg"
+              alt="Footwear"
+              class="cat-img"
+            />
+
+            <div class="cat-overlay">
+              <div class="cat-count">05 Pieces</div>
+
+              <h3 class="cat-name">Footwear</h3>
+
+              <div class="cat-arrow">
+                Explore <i class="fa-solid fa-arrow-right"></i>
+              </div>
+            </div>
+          </a>
+
+          <a href="#pants" class="cat-card reveal reveal-delay-2">
+            <img
+              src="https://i.ibb.co/PvB8r1zH/Whats-App-Image-2026-06-01-at-2-42-48-PM.jpg"
+              alt="Trousers"
+              class="cat-img"
+            />
+
+            <div class="cat-overlay">
+              <div class="cat-count">04 Pieces</div>
+
+              <h3 class="cat-name">Trousers</h3>
+
+              <div class="cat-arrow">
+                Explore <i class="fa-solid fa-arrow-right"></i>
+              </div>
+            </div>
+          </a>
+
+          <a href="#twopieces" class="cat-card reveal reveal-delay-3">
+            <img
+              src="https://i.ibb.co/VcKm0hpN/Whats-App-Image-2026-06-01-at-2-41-50-PM.jpg"
+              alt="Co-ord Sets"
+              class="cat-img"
+            />
+
+            <div class="cat-overlay">
+              <div class="cat-count">05 Sets</div>
+
+              <h3 class="cat-name">Co-ord Sets</h3>
+
+              <div class="cat-arrow">
+                Explore <i class="fa-solid fa-arrow-right"></i>
+              </div>
+            </div>
+          </a>
+
+          <a href="#accessories" class="cat-card reveal reveal-delay-4">
+            <img
+              src="https://i.ibb.co/bj6gNmtj/Whats-App-Image-2026-06-01-at-2-44-24-PM.jpg"
+              alt="Accessories"
+              class="cat-img"
+            />
+
+            <div class="cat-overlay">
+              <div class="cat-count">07 Pieces</div>
+
+              <h3 class="cat-name">Accessories</h3>
+
+              <div class="cat-arrow">
+                Explore <i class="fa-solid fa-arrow-right"></i>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Brand Story -->
+
+    <section id="story" class="section" style="background: var(--cream-2)">
+      <div class="section-inner">
+        <div class="story-grid">
+          <div class="story-img-wrap reveal">
+            <img
+              src="https://i.ibb.co/VcKm0hpN/Whats-App-Image-2026-06-01-at-2-41-50-PM.jpg"
+              alt="Miskaa Elegance Brand Story"
+              class="story-img-main"
+            />
+
+            <img
+              src="https://i.ibb.co/bj6gNmtj/Whats-App-Image-2026-06-01-at-2-44-24-PM.jpg"
+              alt="Accessories Detail"
+              class="story-img-accent"
+            />
+
+            <div class="story-badge">
+              <span class="story-badge-num">26</span>
+
+              <span class="story-badge-text">Est. 2026</span>
+            </div>
+          </div>
+
+          <div class="story-content">
+            <div class="section-label reveal">The Miskaa Story</div>
+
+            <h2 class="section-title reveal reveal-delay-1">
+              Fashion is Not<br />What You Wear —<br />It's <em>Who You Are</em>
+            </h2>
+
+            <p class="story-body reveal reveal-delay-2">
+              Miskaa Elegance was born from a belief that
+              <strong>true luxury is personal</strong>. Not defined by price
+              tags, but by the quiet confidence a perfectly crafted garment can
+              give you. We design for women who know exactly who they are — and
+              dress to honour that identity every single day.
+            </p>
+
+            <p
+              class="story-body reveal reveal-delay-3"
+              style="
+                font-size: 1rem;
+                font-style: normal;
+                color: var(--text-muted);
+              "
+            >
+              Every fabric is selected for how it moves. Every cut refined until
+              it disappears — leaving only the woman wearing it. This is the
+              Miskaa philosophy: invisible craftsmanship, unforgettable
+              presence.
+            </p>
+
+            <div class="story-stats reveal reveal-delay-4">
+              <div class="stat-item">
+                <div class="stat-num">27+</div>
+
+                <div class="stat-label">Curated Pieces</div>
+              </div>
+
+              <div class="stat-item">
+                <div class="stat-num">5</div>
+
+                <div class="stat-label">Collections</div>
+              </div>
+
+              <div class="stat-item">
+                <div class="stat-num">100%</div>
+
+                <div class="stat-label">Premium Quality</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SHIRTS -->
+
+    <section id="shirts" class="section products-section">
+      <div class="section-inner">
+        <div class="section-head-row">
+          <div>
+            <div class="section-label reveal">The Wardrobe Foundation</div>
+
+            <h2 class="section-title reveal reveal-delay-1">
+              Luxury <em>Shirts</em>
+            </h2>
+          </div>
+
+          <a
+            href="https://www.instagram.com/miskaa.elegance"
+            target="_blank"
+            class="view-all-link reveal reveal-delay-2"
+            >View All</a
+          >
+        </div>
+
+        <div class="products-grid">
+          <div class="product-card reveal">
+            <div class="product-img-wrap">
+              <img
+                src="https://i.ibb.co/zWC6hGfw/Whats-App-Image-2026-06-01-at-2-40-58-PM.jpg"
+                alt="Draped Open-Collar Blouse"
+              />
+
+              <div class="product-badge">New</div>
+
+              <div class="product-quick-view">
+                <i class="fa-brands fa-instagram"></i> &nbsp; Order on Instagram
+              </div>
+            </div>
+
+            <div class="product-info">
+              <div class="product-category">Shirts · SS26</div>
+
+              <div class="product-name">Draped Open-Collar Blouse</div>
+
+              <div class="product-footer">
+                <div class="product-price">$59 <span>USD</span></div>
+
+                <a
+                  href="https://www.instagram.com/miskaa.elegance"
+                  target="_blank"
+                  class="btn-order"
+                  >Order Now</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="product-card reveal reveal-delay-1">
+            <div class="product-img-wrap">
+              <img
+                src="https://i.ibb.co/gbwTP19t/Whats-App-Image-2026-06-01-at-2-40-58-PM-1.jpg"
+                alt="Satin Relaxed Dress Shirt"
+              />
+
+              <div class="product-quick-view">
+                <i class="fa-brands fa-instagram"></i> &nbsp; Order on Instagram
+              </div>
+            </div>
+
+            <div class="product-info">
+              <div class="product-category">Shirts · SS26</div>
+
+              <div class="product-name">Satin Relaxed Dress Shirt</div>
+
+              <div class="product-footer">
+                <div class="product-price">$65 <span>USD</span></div>
+
+                <a
+                  href="https://www.instagram.com/miskaa.elegance"
+                  target="_blank"
+                  class="btn-order"
+                  >Order Now</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="product-card reveal reveal-delay-2">
+            <div class="product-img-wrap">
+              <img
+                src="https://i.ibb.co/nM9kcp2d/Whats-App-Image-2026-06-01-at-2-40-58-PM-2.jpg"
+                alt="Clean-Line Pastel Button-Up"
+              />
+
+              <div class="product-quick-view">
+                <i class="fa-brands fa-instagram"></i> &nbsp; Order on Instagram
+              </div>
+            </div>
+
+            <div class="product-info">
+              <div class="product-category">Shirts · SS26</div>
+
+              <div class="product-name">Clean-Line Pastel Button-Up</div>
+
+              <div class="product-footer">
+                <div class="product-price">$52 <span>USD</span></div>
+
+                <a
+                  href="https://www.instagram.com/miskaa.elegance"
+                  target="_blank"
+                  class="btn-order"
+                  >Order Now</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="product-card reveal reveal-delay-1">
+            <div class="product-img-wrap">
+              <img
+                src="https://i.ibb.co/Jwn0q0Yf/Whats-App-Image-2026-06-01-at-2-40-58-PM-3.jpg"
+                alt="Oversized Cuff Neutral Shirt"
+              />
+
+              <div class="product-quick-view">
+                <i class="fa-brands fa-instagram"></i> &nbsp; Order on Instagram
+              </div>
+            </div>
+
+            <div class="product-info">
+              <div class="product-category">Shirts · SS26</div>
+
+              <div class="product-name">Oversized Cuff Neutral Shirt</div>
+
+              <div class="product-footer">
+                <div class="product-price">$58 <span>USD</span></div>
+
+                <a
+                  href="https://www.instagram.com/miskaa.elegance"
+                  target="_blank"
+                  class="btn-order"
+                  >Order Now</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="product-card reveal reveal-delay-2">
+            <div class="product-img-wrap">
+              <img
+                src="https://i.ibb.co/jvYqyPvL/Whats-App-Image-2026-06-01-at-2-40-58-PM-4.jpg"
+                alt="Structured Pleat-Front Top"
+              />
+
+              <div class="product-quick-view">
+                <i class="fa-brands fa-instagram"></i> &nbsp; Order on Instagram
+              </div>
+            </div>
+
+            <div class="product-info">
+              <div class="product-category">Shirts · SS26</div>
+
+              <div class="product-name">Structured Pleat-Front Top</div>
+
+              <div class="product-footer">
+                <div class="product-price">$62 <span>USD</span></div>
+
+                <a
+                  href="https://www.instagram.com/miskaa.elegance"
+                  target="_blank"
+                  class="btn-order"
+                  >Order Now</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="product-card reveal reveal-delay-3">
+            <div class="product-img-wrap">
+              <img
+                src="https://i.ibb.co/0yTDzqDX/Whats-App-Image-2026-06-01-at-2-40-58-PM-5.jpg"
+                alt="Fluid Linen Boxy Shirt"
+              />
+
+              <div class="product-quick-view">
+                <i class="fa-brands fa-instagram"></i> &nbsp; Order on Instagram
+              </div>
+            </div>
+
+            <div class="product-info">
+              <div class="product-category">Shirts · SS26</div>
+
+              <div class="product-name">Fluid Linen Boxy Shirt</div>
+
+              <div class="product-footer">
+                <div class="product-price">$55 <span>USD</span></div>
+
+                <a
+                  href="https://www.instagram.com/miskaa.elegance"
+                  target="_blank"
+                  class="btn-order"
+                  >Order Now</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quote -->
+
+    <div class="quote-band">
+      <p class="quote-text reveal">
+        "Style is a way to say who you are without having to speak."
+      </p>
+
+      <div class="quote-author reveal reveal-delay-1">
+        — The Miskaa Philosophy
+      </div>
+    </div>
+
+    <!-- SHOES -->
+
+    <section
+      id="shoes"
+      class="section products-section"
+      style="background: var(--white)"
+    >
+      <div class="section-inner">
+        <div class="section-head-row">
+          <div>
+            <div class="section-label reveal">Elevated Every Step</div>
+
+            <h2 class="section-title reveal reveal-delay-1">
+              Fine <em>Footwear</em>
+            </h2>
+          </div>
+
+          <a
+            href="https://www.instagram.com/miskaa.elegance"
+            target="_blank"
+            class="view-all-link reveal reveal-delay-2"
+            >View All</a
+          >
+        </div>
+
+        <div class="products-grid">
+          <div class="product-card reveal">
+            <div class="product-img-wrap">
+              <img
+                src="https://i.ibb.co/VY7yqx8x/Whats-App-Image-2026-06-01-at-2-43-33-PM.jpg"
+                alt="Sculptured Block-Heel Mule"
+              />
+
+              <div class="product-badge">Featured</div>
+
+              <div class="product-quick-view">
+                <i class="fa-brands fa-instagram"></i> &nbsp; Order on Instagram
+              </div>
+            </div>
+
+            <div class="product-info">
+              <div class="product-category">Footwear · SS26</div>
+
+              <div class="product-name">Sculptured Block-Heel Mule</div>
+
+              <div class="product-footer">
+                <div class="product-price">$89 <span>USD</span></div>
+
+                <a
+                  href="https://www.instagram.com/miskaa.elegance"
+                  target="_blank"
+                  class="btn-order"
+                  >Order Now</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="product-card reveal reveal-delay-1">
+            <div class="product-img-wrap">
+              <img
+                src="https://i.ibb.co/5WFRvQZx/Whats-App-Image-2026-06-01-at-2-43-33-PM-1.jpg"
+                alt="Thin-Strap Evening Heel"
+              />
+
+              <div class="product-quick-view">
+                <i class="fa-brands fa-instagram"></i> &nbsp; Order on Instagram
+              </div>
+            </div>
+
+            <div class="product-info">
+              <div class="product-category">Footwear · SS26</div>
+
+              <div class="product-name">Thin-Strap Evening Heel</div>
+
+              <div class="product-footer">
+                <div class="product-price">$95 <span>USD</span></div>
+
+                <a
+                  href="https://www.instagram.com/miskaa.elegance"
+                  target="_blank"
+                  class="btn-order"
+                  >Order Now</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="product-card reveal reveal-delay-2">
+            <div class="product-img-wrap">
+              <img
+                src="https://i.ibb.co/S4HQyJ3v/Whats-App-Image-2026-06-01-at-2-43-34-PM.jpg"
+                alt="Minimalist Flat Leather Sandal"
+              />
+
+              <div class="product-quick-view">
+                <i class="fa-brands fa-instagram"></i> &nbsp; Order on Instagram
+              </div>
+            </div>
+
+            <div class="product-info">
+              <div class="product-category">Footwear · SS26</div>
+
+              <div class="product-name">Minimalist Flat Leather Sandal</div>
+
+              <div class="product-footer">
+                <div class="product-price">$72 <span>USD</span></div>
+
+                <a
+                  href="https://www.instagram.com/miskaa.elegance"
+                  target="_blank"
+                  class="btn-order"
+                  >Order Now</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="product-card reveal reveal-delay-1">
+            <div class="product-img-wrap">
+              <img
+                src="https://i.ibb.co/YF5Jq4sc/Whats-App-Image-2026-06-01-at-2-43-34-PM-1.jpg"
+                alt="Buckle-Detail Leather Slide"
+              />
+
+              <div class="product-quick-view">
+                <i class="fa-brands fa-instagram"></i> &nbsp; Order on Instagram
+              </div>
+            </div>
+
+            <div class="product-info">
+              <div class="product-category">Footwear · SS26</div>
+
+              <div class="product-name">Buckle-Detail Leather Slide</div>
+
+              <div class="product-footer">
+                <div class="product-price">$68 <span>USD</span></div>
+
+                <a
+                  href="https://www.instagram.com/miskaa.elegance"
+                  target="_blank"
+                  class="btn-order"
+                  >Order Now</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="product-card reveal reveal-delay-2">
+            <div class="product-img-wrap">
+              <img
+                src="https://i.ibb.co/p63p7Qx3/Whats-App-Image-2026-06-01-at-2-43-34-PM-2.jpg"
+                alt="Pointed-Toe Classic Pump"
+              />
+
+              <div class="product-quick-view">
+                <i class="fa-brands fa-instagram"></i> &nbsp; Order on Instagram
+              </div>
+            </div>
+
+            <div class="product-info">
+              <div class="product-category">Footwear · SS26</div>
+
+              <div class="product-name">Pointed-Toe Classic Pump</div>
+
+              <div class="product-footer">
+                <div class="product-price">$99 <span>USD</span></div>
+
+                <a
+                  href="https://www.instagram.com/miskaa.elegance"
+                  target="_blank"
+                  class="btn-order"
+                  >Order Now</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PANTS -->
+
+    <section id="pants" class="section products-section">
+      <div class="section-inner">
+        <div class="section-head-row">
+          <div>
+            <div class="section-label reveal">Crafted Silhouettes</div>
+
+            <h2 class="section-title reveal reveal-delay-1">
+              Bespoke <em>Trousers</em>
+            </h2>
+          </div>
+
+          <a
+            href="https://www.instagram.com/miskaa.elegance"
+            target="_blank"
+            class="view-all-link reveal reveal-delay-2"
+            >View All</a
+          >
+        </div>
+
+        <div class="products-grid">
+          <div class="product-card reveal">
+            <div class="product-img-wrap">
+              <img
+                src="https://i.ibb.co/PvB8r1zH/Whats-App-Image-2026-06-01-at-2-42-48-PM.jpg"
+                alt="Tailored High-Rise Trouser"
+              />
+
+              <div class="product-badge">Best Seller</div>
+
+              <div class="product-quick-view">
+                <i class="fa-brands fa-instagram"></i> &nbsp; Order on Instagram
+              </div>
+            </div>
+
+            <div class="product-info">
+              <div class="product-category">Trousers · SS26</div>
+
+              <div class="product-name">Tailored High-Rise Trouser</div>
+
+              <div class="product-footer">
+                <div class="product-price">$69 <span>USD</span></div>
+
+                <a
+                  href="https://www.instagram.com/miskaa.elegance"
+                  target="_blank"
+                  class="btn-order"
+                  >Order Now</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="product-card reveal reveal-delay-1">
+            <div class="product-img-wrap">
+              <img
+                src="https://i.ibb.co/6RjScxyZ/Whats-App-Image-2026-06-01-at-2-42-48-PM-1.jpg"
+                alt="Straight-Cut Linen Trouser"
+              />
+
+              <div class="product-quick-view">
+                <i class="fa-brands fa-instagram"></i> &nbsp; Order on Instagram
+              </div>
+            </div>
+
+            <div class="product-info">
+              <div class="product-category">Trousers · SS26</div>
+
+              <div class="product-name">Straight-Cut Linen Trouser</div>
+
+              <div class="product-footer">
+                <div class="product-price">$62 <span>USD</span></div>
+
+                <a
+                  href="https://www.instagram.com/miskaa.elegance"
+                  target="_blank"
+                  class="btn-order"
+                  >Order Now</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="product-card reveal reveal-delay-2">
+            <div class="product-img-wrap">
+              <img
+                src="https://i.ibb.co/SwLJgbMb/Whats-App-Image-2026-06-01-at-2-42-48-PM-2.jpg"
+                alt="Fluid Wide-Leg Pant"
+              />
+
+              <div class="product-quick-view">
+                <i class="fa-brands fa-instagram"></i> &nbsp; Order on Instagram
+              </div>
+            </div>
+
+            <div class="product-info">
+              <div class="product-category">Trousers · SS26</div>
+
+              <div class="product-name">Fluid Wide-Leg Pant</div>
+
+              <div class="product-footer">
+                <div class="product-price">$75 <span>USD</span></div>
+
+                <a
+                  href="https://www.instagram.com/miskaa.elegance"
+                  target="_blank"
+                  class="btn-order"
+                  >Order Now</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="product-card reveal reveal-delay-2">
+            <div class="product-img-wrap">
+              <img
+                src="https://i.ibb.co/Nd8QBLKF/Whats-App-Image-2026-06-01-at-2-42-49-PM.jpg"
+                alt="Pressed-Crease Formal Slacks"
+              />
+
+              <div class="product-quick-view">
+                <i class="fa-brands fa-instagram"></i> &nbsp; Order on Instagram
+              </div>
+            </div>
+
+            <div class="product-info">
+              <div class="product-category">Trousers · SS26</div>
+
+              <div class="product-name">Pressed-Crease Formal Slacks</div>
+
+              <div class="product-footer">
+                <div class="product-price">$79 <span>USD</span></div>
+
+                <a
+                  href="https://www.instagram.com/miskaa.elegance"
+                  target="_blank"
+                  class="btn-order"
+                  >Order Now</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TWO PIECES -->
+
+    <section
+      id="twopieces"
+      class="section products-section"
+      style="background: var(--white)"
+    >
+      <div class="section-inner">
+        <div class="section-head-row">
+          <div>
+            <div class="section-label reveal">The Complete Look</div>
+
+            <h2 class="section-title reveal reveal-delay-1">
+              Signature <em>Co-ord Sets</em>
+            </h2>
+          </div>
+
+          <a
+            href="https://www.instagram.com/miskaa.elegance"
+            target="_blank"
+            class="view-all-link reveal reveal-delay-2"
+            >View All</a
+          >
+        </div>
+
+        <div class="products-grid">
+          <div class="product-card reveal">
+            <div class="product-img-wrap">
+              <img
+                src="https://i.ibb.co/VcKm0hpN/Whats-App-Image-2026-06-01-at-2-41-50-PM.jpg"
+                alt="Soft Knit Matching Set"
+              />
+
+              <div class="product-badge">New</div>
+
+              <div class="product-quick-view">
+                <i class="fa-brands fa-instagram"></i> &nbsp; Order on Instagram
+              </div>
+            </div>
+
+            <div class="product-info">
+              <div class="product-category">Co-ords · SS26</div>
+
+              <div class="product-name">Soft Knit Matching Set</div>
+
+              <div class="product-footer">
+                <div class="product-price">$115 <span>USD</span></div>
+
+                <a
+                  href="https://www.instagram.com/miskaa.elegance"
+                  target="_blank"
+                  class="btn-order"
+                  >Order Now</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="product-card reveal reveal-delay-1">
+            <div class="product-img-wrap">
+              <img
+                src="https://i.ibb.co/ksghz4b5/Whats-App-Image-2026-06-01-at-2-41-51-PM.jpg"
+                alt="Tonal Neutral Two-Piece Suit"
+              />
+
+              <div class="product-quick-view">
+                <i class="fa-brands fa-instagram"></i> &nbsp; Order on Instagram
+              </div>
+            </div>
+
+            <div class="product-info">
+              <div class="product-category">Co-ords · SS26</div>
+
+              <div class="product-name">Tonal Neutral Two-Piece Suit</div>
+
+              <div class="product-footer">
+                <div class="product-price">$105 <span>USD</span></div>
+
+                <a
+                  href="https://www.instagram.com/miskaa.elegance"
+                  target="_blank"
+                  class="btn-order"
+                  >Order Now</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="product-card reveal reveal-delay-2">
+            <div class="product-img-wrap">
+              <img
+                src="https://i.ibb.co/XZkwrZS7/Whats-App-Image-2026-06-01-at-2-41-51-PM-1.jpg"
+                alt="Blazer & Trouser Power Set"
+              />
+
+              <div class="product-badge">Featured</div>
+
+              <div class="product-quick-view">
+                <i class="fa-brands fa-instagram"></i> &nbsp; Order on Instagram
+              </div>
+            </div>
+
+            <div class="product-info">
+              <div class="product-category">Co-ords · SS26</div>
+
+              <div class="product-name">Blazer & Trouser Power Set</div>
+
+              <div class="product-footer">
+                <div class="product-price">$135 <span>USD</span></div>
+
+                <a
+                  href="https://www.instagram.com/miskaa.elegance"
+                  target="_blank"
+                  class="btn-order"
+                  >Order Now</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="product-card reveal reveal-delay-1">
+            <div class="product-img-wrap">
+              <img
+                src="https://i.ibb.co/93bmwy3p/Whats-App-Image-2026-06-01-at-2-41-52-PM.jpg"
+                alt="Structured Linen Co-ord"
+              />
+
+              <div class="product-quick-view">
+                <i class="fa-brands fa-instagram"></i> &nbsp; Order on Instagram
+              </div>
+            </div>
+
+            <div class="product-info">
+              <div class="product-category">Co-ords · SS26</div>
+
+              <div class="product-name">Structured Linen Co-ord</div>
+
+              <div class="product-footer">
+                <div class="product-price">$128 <span>USD</span></div>
+
+                <a
+                  href="https://www.instagram.com/miskaa.elegance"
+                  target="_blank"
+                  class="btn-order"
+                  >Order Now</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="product-card reveal reveal-delay-2">
+            <div class="product-img-wrap">
+              <img
+                src="https://i.ibb.co/JJrQS72/Whats-App-Image-2026-06-01-at-2-41-52-PM-1.jpg"
+                alt="Textured Weave Ensemble"
+              />
+
+              <div class="product-quick-view">
+                <i class="fa-brands fa-instagram"></i> &nbsp; Order on Instagram
+              </div>
+            </div>
+
+            <div class="product-info">
+              <div class="product-category">Co-ords · SS26</div>
+
+              <div class="product-name">Textured Weave Ensemble</div>
+
+              <div class="product-footer">
+                <div class="product-price">$110 <span>USD</span></div>
+
+                <a
+                  href="https://www.instagram.com/miskaa.elegance"
+                  target="_blank"
+                  class="btn-order"
+                  >Order Now</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ACCESSORIES -->
+
+    <section id="accessories" class="section products-section">
+      <div class="section-inner">
+        <div class="section-head-row">
+          <div>
+            <div class="section-label reveal">The Finishing Touch</div>
+
+            <h2 class="section-title reveal reveal-delay-1">
+              Prestige <em>Accessories</em>
+            </h2>
+          </div>
+
+          <a
+            href="https://www.instagram.com/miskaa.elegance"
+            target="_blank"
+            class="view-all-link reveal reveal-delay-2"
+            >View All</a
+          >
+        </div>
+
+        <div class="products-grid">
+          <div class="product-card reveal">
+            <div class="product-img-wrap">
+              <img
+                src="https://i.ibb.co/bj6gNmtj/Whats-App-Image-2026-06-01-at-2-44-24-PM.jpg"
+                alt="Gold-Plated Bangle Stack"
+              />
+
+              <div class="product-badge">New</div>
+
+              <div class="product-quick-view">
+                <i class="fa-brands fa-instagram"></i> &nbsp; Order on Instagram
+              </div>
+            </div>
+
+            <div class="product-info">
+              <div class="product-category">Accessories · SS26</div>
+
+              <div class="product-name">Gold-Plated Bangle Stack</div>
+
+              <div class="product-footer">
+                <div class="product-price">$48 <span>USD</span></div>
+
+                <a
+                  href="https://www.instagram.com/miskaa.elegance"
+                  target="_blank"
+                  class="btn-order"
+                  >Order Now</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="product-card reveal reveal-delay-1">
+            <div class="product-img-wrap">
+              <img
+                src="https://i.ibb.co/cSn25ppP/Whats-App-Image-2026-06-01-at-2-44-25-PM.jpg"
+                alt="Layered Chain Necklace Set"
+              />
+
+              <div class="product-quick-view">
+                <i class="fa-brands fa-instagram"></i> &nbsp; Order on Instagram
+              </div>
+            </div>
+
+            <div class="product-info">
+              <div class="product-category">Accessories · SS26</div>
+
+              <div class="product-name">Layered Chain Necklace Set</div>
+
+              <div class="product-footer">
+                <div class="product-price">$55 <span>USD</span></div>
+
+                <a
+                  href="https://www.instagram.com/miskaa.elegance"
+                  target="_blank"
+                  class="btn-order"
+                  >Order Now</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="product-card reveal reveal-delay-2">
+            <div class="product-img-wrap">
+              <img
+                src="https://i.ibb.co/k6KbhWNW/Whats-App-Image-2026-06-01-at-2-44-25-PM-1.jpg"
+                alt="Matte Black Statement Chain"
+              />
+
+              <div class="product-quick-view">
+                <i class="fa-brands fa-instagram"></i> &nbsp; Order on Instagram
+              </div>
+            </div>
+
+            <div class="product-info">
+              <div class="product-category">Accessories · SS26</div>
+
+              <div class="product-name">Matte Black Statement Chain</div>
+
+              <div class="product-footer">
+                <div class="product-price">$45 <span>USD</span></div>
+
+                <a
+                  href="https://www.instagram.com/miskaa.elegance"
+                  target="_blank"
+                  class="btn-order"
+                  >Order Now</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="product-card reveal reveal-delay-1">
+            <div class="product-img-wrap">
+              <img
+                src="https://i.ibb.co/KpVgXdbX/Whats-App-Image-2026-06-01-at-2-44-25-PM-2.jpg"
+                alt="Emerald Drop Earrings"
+              />
+
+              <div class="product-quick-view">
+                <i class="fa-brands fa-instagram"></i> &nbsp; Order on Instagram
+              </div>
+            </div>
+
+            <div class="product-info">
+              <div class="product-category">Accessories · SS26</div>
+
+              <div class="product-name">Emerald Drop Earrings</div>
+
+              <div class="product-footer">
+                <div class="product-price">$38 <span>USD</span></div>
+
+                <a
+                  href="https://www.instagram.com/miskaa.elegance"
+                  target="_blank"
+                  class="btn-order"
+                  >Order Now</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="product-card reveal reveal-delay-2">
+            <div class="product-img-wrap">
+              <img
+                src="https://i.ibb.co/cSvXHtw6/Whats-App-Image-2026-06-01-at-2-44-25-PM-3.jpg"
+                alt="Clover Signet Ring"
+              />
+
+              <div class="product-quick-view">
+                <i class="fa-brands fa-instagram"></i> &nbsp; Order on Instagram
+              </div>
+            </div>
+
+            <div class="product-info">
+              <div class="product-category">Accessories · SS26</div>
+
+              <div class="product-name">Clover Signet Ring</div>
+
+              <div class="product-footer">
+                <div class="product-price">$42 <span>USD</span></div>
+
+                <a
+                  href="https://www.instagram.com/miskaa.elegance"
+                  target="_blank"
+                  class="btn-order"
+                  >Order Now</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="product-card reveal reveal-delay-3">
+            <div class="product-img-wrap">
+              <img
+                src="https://i.ibb.co/tw9QY3JD/Whats-App-Image-2026-06-01-at-2-44-26-PM-1.jpg"
+                alt="Delicate Link Bracelet"
+              />
+
+              <div class="product-quick-view">
+                <i class="fa-brands fa-instagram"></i> &nbsp; Order on Instagram
+              </div>
+            </div>
+
+            <div class="product-info">
+              <div class="product-category">Accessories · SS26</div>
+
+              <div class="product-name">Delicate Link Bracelet</div>
+
+              <div class="product-footer">
+                <div class="product-price">$40 <span>USD</span></div>
+
+                <a
+                  href="https://www.instagram.com/miskaa.elegance"
+                  target="_blank"
+                  class="btn-order"
+                  >Order Now</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="product-card reveal reveal-delay-4">
+            <div class="product-img-wrap">
+              <img
+                src="https://i.ibb.co/rRRsdxs2/Whats-App-Image-2026-06-01-at-2-44-26-PM.jpg"
+                alt="Hammered Cuff Bracelet"
+              />
+
+              <div class="product-quick-view">
+                <i class="fa-brands fa-instagram"></i> &nbsp; Order on Instagram
+              </div>
+            </div>
+
+            <div class="product-info">
+              <div class="product-category">Accessories · SS26</div>
+
+              <div class="product-name">Hammered Cuff Bracelet</div>
+
+              <div class="product-footer">
+                <div class="product-price">$44 <span>USD</span></div>
+
+                <a
+                  href="https://www.instagram.com/miskaa.elegance"
+                  target="_blank"
+                  class="btn-order"
+                  >Order Now</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+
+    <footer id="contact">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <div
+              class="logo-mark"
+              style="
+                width: 38px;
+                height: 38px;
+                border: 1px solid var(--gold);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1rem;
+                color: var(--gold);
+                font-family: &quot;Cormorant Garamond&quot;, serif;
+              "
+            >
+              M
+            </div>
+
+            Miskaa Elegance
+          </div>
+
+          <p class="footer-desc">
+            A luxury fashion house built on the belief that style is the most
+            honest form of self-expression. Every piece we carry is a statement
+            — timeless, intentional, and crafted for you.
+          </p>
+
+          <div class="footer-social">
+            <a
+              href="https://www.instagram.com/miskaa.elegance"
+              target="_blank"
+              class="social-btn"
+              ><i class="fa-brands fa-instagram"></i
+            ></a>
+          </div>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Collections</div>
+
+          <div class="footer-links">
+            <a href="#shirts" class="footer-link">Luxury Shirts</a>
+
+            <a href="#shoes" class="footer-link">Fine Footwear</a>
+
+            <a href="#pants" class="footer-link">Bespoke Trousers</a>
+
+            <a href="#twopieces" class="footer-link">Co-ord Sets</a>
+
+            <a href="#accessories" class="footer-link">Accessories</a>
+          </div>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Connect</div>
+
+          <div class="footer-links">
+            <a href="#story" class="footer-link">Our Story</a>
+
+            <a
+              href="https://www.instagram.com/miskaa.elegance"
+              target="_blank"
+              class="footer-link"
+              >Instagram</a
+            >
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-copy">
+          © 2026 Miskaa Elegance. All rights reserved.
+        </div>
+
+        <div class="footer-tagline">
+          Crafted with intention. Worn with identity.
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // ─── LOADER ───
+
+      window.addEventListener("load", () => {
+        setTimeout(() => {
+          document.getElementById("loader").classList.add("hidden");
+        }, 2200);
+      });
+
+      // ─── CUSTOM CURSOR ───
+
+      const dot = document.getElementById("cursorDot");
+
+      const ring = document.getElementById("cursorRing");
+
+      let mx = 0,
+        my = 0,
+        rx = 0,
+        ry = 0;
+
+      document.addEventListener("mousemove", (e) => {
+        mx = e.clientX;
+        my = e.clientY;
+
+        dot.style.left = mx + "px";
+
+        dot.style.top = my + "px";
+      });
+
+      function animateRing() {
+        rx += (mx - rx) * 0.12;
+
+        ry += (my - ry) * 0.12;
+
+        ring.style.left = rx + "px";
+
+        ring.style.top = ry + "px";
+
+        requestAnimationFrame(animateRing);
+      }
+
+      animateRing();
+
+      document
+        .querySelectorAll("a, button, .cat-card, .product-card, .btn-order")
+        .forEach((el) => {
+          el.addEventListener("mouseenter", () => {
+            ring.style.width = "56px";
+
+            ring.style.height = "56px";
+
+            ring.style.opacity = "1";
+
+            dot.style.opacity = "0";
+          });
+
+          el.addEventListener("mouseleave", () => {
+            ring.style.width = "36px";
+
+            ring.style.height = "36px";
+
+            ring.style.opacity = "0.6";
+
+            dot.style.opacity = "1";
+          });
+        });
+
+      // ─── HEADER SCROLL ───
+
+      const header = document.getElementById("header");
+
+      window.addEventListener("scroll", () => {
+        header.classList.toggle("scrolled", window.scrollY > 60);
+      });
+
+      // ─── REVEAL ON SCROLL ───
+
+      const reveals = document.querySelectorAll(".reveal");
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+            }
+          });
+        },
+        { threshold: 0.12 },
+      );
+
+      reveals.forEach((el) => observer.observe(el));
+    </script>
+  </body>
+</html>
